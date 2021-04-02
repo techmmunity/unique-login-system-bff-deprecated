@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+  db:
+    image: "postgres"
+    container_name: base_service_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: dev_db
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: dev_db
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+    networks:
+      - base_service_network
+  api:
+    build:
+      context: "."
+      dockerfile: Dockerfile.dev
+    container_name: base_service_api
+    command: yarn dev:docker
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    networks:
+      - base_service_network
+    env_file:
+      - .env.docker
+    volumes:
+      - ./:/app/
+      - nodemodules:/app/node_modules
+
+volumes:
+  database-data:
+  nodemodules:
+
+networks:
+  base_service_network:
+    driver: bridge
