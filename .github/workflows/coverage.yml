@@ -1,4 +1,4 @@
-name: Collect Coverage
+name: Coverage
 
 on:
   push:
