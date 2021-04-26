@@ -5,10 +5,12 @@ declare global {
 		interface ProcessEnv {
 			NODE_ENV: "dev" | "production" | "homolog" | "test";
 			PORT: string;
-			POSTGRES_USER: string;
-			POSTGRES_PASSWORD: string;
-			POSTGRES_HOST: string;
-			POSTGRES_DATABSE: string;
+			DOMAIN: string;
+			USER_SERVICE_HOST: string;
+			AUTH_JWT_SECRET_KEY: string;
+			REFRESH_JWT_SECRET_KEY: string;
+			AUTH_JWT_COOKIE_NAME: string;
+			REFRESH_JWT_COOKIE_NAME: string;
 		}
 	}
 }
