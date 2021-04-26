@@ -1,11 +1,1 @@
-Run project:
-
-```
-yarn docker
-```
-
-Resolve Volume Conflicts When a New Lib Is Added:
-
-```
-yarn docker:clear
-```
+[![CodeFactor](https://www.codefactor.io/repository/github/techmmunity/unique-login-system-bff/badge)](https://www.codefactor.io/repository/github/techmmunity/unique-login-system-bff) <space> [![Coverage Status](https://coveralls.io/repos/github/techmmunity/unique-login-system/badge.svg?branch=master)](https://coveralls.io/github/techmmunity/unique-login-system?branch=master) <space> [![Tests](https://github.com/techmmunity/unique-login-system/workflows/tests/badge.svg)]()
