@@ -3,7 +3,7 @@ import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 
 export const Swagger = (app: INestApplication) => {
 	const config = new DocumentBuilder()
-		.setTitle("Base Service")
+		.setTitle("Unique Login System BFF")
 		.setDescription("")
 		.setVersion("1.0")
 		.build();

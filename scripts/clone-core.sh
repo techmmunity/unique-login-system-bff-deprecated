@@ -2,7 +2,7 @@
 
 rm -rf src/core
 
-git clone git@github.com:razal-discord-bot/core-backend.git src/core
+git clone git@github.com:techmmunity/core.git src/core
 
 cd src/core
 
