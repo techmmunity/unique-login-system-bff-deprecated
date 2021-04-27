@@ -1,4 +1,4 @@
-name: Tests
+name: Tests And Coverage
 
 on:
   push:
@@ -32,3 +32,9 @@ jobs:
       - name: Run Tests
         run: |
           yarn test:cov
+
+      - name: Colect Coverage
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
