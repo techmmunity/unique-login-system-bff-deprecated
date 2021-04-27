@@ -11,7 +11,7 @@ module.exports = {
 		"!v*/api/**/service/**/*.schema.ts",
 		"!v*/api/health/**",
 	],
-	// setupFiles: ["./v1/tests/setup.ts"],
+	setupFiles: ["./v1/tests/setup.ts"],
 	coverageDirectory: "../coverage",
 	testEnvironment: "node",
 	moduleDirectories: ["node_modules", "src"],

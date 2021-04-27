@@ -1,5 +1,3 @@
-import { RequestError, RequestResponse } from "./global";
-
 import { ContactTypeEnum } from "core/enums/contact-type";
 
 export interface AddContactInput {
@@ -18,7 +16,3 @@ export type AddContactOutput = Array<{
 	createdAt: Date;
 	updatedAt: Date;
 }>;
-
-export type AddContactResponse =
-	| RequestResponse<AddContactOutput>
-	| RequestError;

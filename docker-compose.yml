@@ -6,8 +6,6 @@ services:
       dockerfile: Dockerfile.dev
     container_name: unique_login_system_bff_api
     command: yarn dev:docker
-    depends_on:
-      - db
     ports:
       - 3000:3000
     networks:

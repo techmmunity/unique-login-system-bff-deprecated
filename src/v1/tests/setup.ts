@@ -1,6 +1,6 @@
-jest.mock("typeorm-transactional-cls-hooked", () => ({
-	Transactional: () => () => ({}),
-	BaseRepository: class {
-		//
-	},
-}));
+import { config } from "dotenv";
+import { resolve } from "path";
+
+config({
+	path: resolve(__dirname, ".env.test"),
+});

@@ -2,8 +2,8 @@
 	"name": "unique-login-system-bff",
 	"version": "0.0.1",
 	"description": "",
-	"author": "",
-	"private": true,
+	"author": "Techmmunity",
+	"private": false,
 	"license": "UNLICENSED",
 	"dependencies": {
 		"@nestjs/common": "^7.5.1",
@@ -11,6 +11,7 @@
 		"@nestjs/platform-express": "^7.5.1",
 		"@nestjs/swagger": "^4.7.16",
 		"@nestjs/terminus": "^7.1.2",
+		"@techmmunity/easy-check": "^2.4.1",
 		"cookie-parser": "^1.4.5",
 		"jsonwebtoken": "^8.5.1",
 		"nestjs-rate-limit": "^1.1.1",
@@ -34,6 +35,7 @@
 		"@types/supertest": "^2.0.10",
 		"@typescript-eslint/eslint-plugin": "^4.6.1",
 		"@typescript-eslint/parser": "^4.6.1",
+		"dotenv": "^8.2.0",
 		"env-cmd": "^10.1.0",
 		"eslint": "^7.12.1",
 		"eslint-config-prettier": "7.2.0",
@@ -102,7 +104,7 @@
 		"clone:core": "./scripts/clone-core.sh",
 		"copy:core": "./scripts/copy-core.sh",
 		"docker": "docker-compose up",
-		"docker:clear": "docker container rm unique-login-system-bff_api && docker image rm unique-login-system-bff_api && docker volume rm unique-login-system-bff_nodemodules",
+		"docker:clear": "docker container rm unique_login_system_bff_api && docker image rm unique-login-system-bff_api && docker volume rm unique-login-system-bff_nodemodules",
 		"migration:generate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ormconfig.migrations.json migration:generate -d src/v1/migrations -n"
 	}
 }

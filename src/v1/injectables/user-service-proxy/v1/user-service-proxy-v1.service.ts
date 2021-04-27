@@ -2,25 +2,21 @@ import { Injectable } from "@nestjs/common";
 import fetch, { RequestInit } from "node-fetch";
 import { URLSearchParams } from "url";
 
-import { AddContactInput, AddContactResponse } from "./interfaces/add-contact";
-import {
-	CreateLocalInput,
-	CreateLocalResponse,
-} from "./interfaces/create-local";
+import { AddContactInput, AddContactOutput } from "./interfaces/add-contact";
+import { CreateLocalInput, CreateLocalOutput } from "./interfaces/create-local";
 import { RequestParams, RequestResponse } from "./interfaces/global";
-import { LoginLocalInput, LoginLocalResponse } from "./interfaces/login-local";
-import { RegenPinInput, RegenPinResponse } from "./interfaces/regen-pin";
-import { VerifyInput, VerifyResponse } from "./interfaces/verify";
+import { LoginLocalInput, LoginLocalOutput } from "./interfaces/login-local";
+import { RegenPinInput, RegenPinOutput } from "./interfaces/regen-pin";
+import { VerifyInput } from "./interfaces/verify";
 
 import { ErrorUtil } from "v1/utils/error";
 
-@Injectable()
-export class UserServiceV1Service {
-	private baseUrl = "";
-	private apiVersion = "v1";
+import { Urls } from "v1/config/urls";
 
+@Injectable()
+export class UserServiceProxyV1Service {
 	public createLocal(body: CreateLocalInput) {
-		return this.request<CreateLocalResponse>({
+		return this.request<CreateLocalOutput>({
 			url: "/user/create/local",
 			method: "POST",
 			body,
@@ -28,7 +24,7 @@ export class UserServiceV1Service {
 	}
 
 	public loginLocal(body: LoginLocalInput) {
-		return this.request<LoginLocalResponse>({
+		return this.request<LoginLocalOutput>({
 			url: "/user/login/local",
 			method: "POST",
 			body,
@@ -36,14 +32,14 @@ export class UserServiceV1Service {
 	}
 
 	public regenPin({ userId }: RegenPinInput) {
-		return this.request<RegenPinResponse>({
+		return this.request<RegenPinOutput>({
 			url: `/user/regen-pin/${userId}`,
 			method: "PUT",
 		});
 	}
 
 	public verify(body: VerifyInput) {
-		return this.request<VerifyResponse>({
+		return this.request<undefined>({
 			url: "/user/verify",
 			method: "PUT",
 			body,
@@ -51,7 +47,7 @@ export class UserServiceV1Service {
 	}
 
 	public addContact(body: AddContactInput) {
-		return this.request<AddContactResponse>({
+		return this.request<AddContactOutput>({
 			url: "/contact",
 			method: "POST",
 			body,
@@ -59,7 +55,10 @@ export class UserServiceV1Service {
 	}
 
 	private async request<T>({ url, ...params }: RequestParams) {
-		return fetch(`${this.baseUrl}${this.apiVersion}${url}`, {
+		const basePath = Urls.services.user.host;
+		const apiVersion = Urls.services.user.version;
+
+		return fetch(`${basePath}${apiVersion}${url}`, {
 			...params,
 			body: new URLSearchParams(params.body),
 		} as RequestInit)

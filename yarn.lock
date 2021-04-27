@@ -695,6 +695,11 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@techmmunity/easy-check@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@techmmunity/easy-check/-/easy-check-2.4.1.tgz#f45e4bd9982f75bf2a399768f5624e21c1d330ed"
+  integrity sha512-4PYPosY9J3bkSLxgdZh/eSdWMCGtWN6Gr8XrDaIhS9taFKIANvEeuZVO8YAZWbCjqTDO8KaQD2sgrauM/VGWpQ==
+
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
@@ -2279,6 +2284,11 @@ domexception@^2.0.1:
   integrity sha512-yxJ2mFy/sibVQlu5qHjOkf9J3K6zgmCxgJ94u2EdvDOV09H+32LtRswEcUsmUWN72pVLOEnTSRaIVVzVQgS0dg==
   dependencies:
     webidl-conversions "^5.0.0"
+
+dotenv@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
