@@ -11,10 +11,6 @@ describe("AuthService > create > local", () => {
 		service = await AuthMock.service();
 	});
 
-	beforeEach(() => {
-		UserServiceProxyV1Mock.service.resetMock();
-	});
-
 	it("should be defined", () => {
 		expect(service).toBeDefined();
 	});
