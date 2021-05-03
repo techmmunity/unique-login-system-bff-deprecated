@@ -1,9 +1,10 @@
 import { CreateUserLocalParams } from "v1/api/auth/service/create/local";
+
 import { validate } from "v1/api/auth/service/create/local/validate";
 
 import { InvalidParamsErrorMessage } from "v1/utils/yup";
 
-describe("UserService > create > local > validation", () => {
+describe("UserService > create > local > validate", () => {
 	it("should do nothing with valid params", async () => {
 		let result;
 
