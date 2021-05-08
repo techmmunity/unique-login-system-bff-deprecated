@@ -1,16 +1,16 @@
 import { Module } from "@nestjs/common";
 
-import { AuthService } from "./auth.service";
+import { UserService } from "./user.service";
 
 import { UserServiceProxyModule } from "v1/injectables/user-service-proxy/user-service-proxy.module";
 
-import { AuthController } from "./auth.controller";
+import { UserController } from "./user.controller";
 
 @Module({
 	imports: [UserServiceProxyModule],
-	controllers: [AuthController],
-	providers: [AuthService],
+	controllers: [UserController],
+	providers: [UserService],
 })
-export class AuthModule {
+export class UserModule {
 	//
 }
