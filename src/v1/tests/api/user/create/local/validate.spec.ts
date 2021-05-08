@@ -1,6 +1,6 @@
-import { CreateUserLocalParams } from "v1/api/auth/service/create/local";
+import { CreateUserLocalParams } from "v1/api/user/service/create/local";
 
-import { validate } from "v1/api/auth/service/create/local/validate";
+import { validate } from "v1/api/user/service/create/local/validate";
 
 import { InvalidParamsErrorMessage } from "v1/utils/yup";
 

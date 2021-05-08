@@ -8,7 +8,7 @@ import { UserServiceProxyV1Service } from "v1/injectables/user-service-proxy/v1/
 import { createLocal, CreateUserLocalParams } from "./service/create/local";
 
 @Injectable()
-export class AuthService {
+export class UserService {
 	public constructor(
 		@EmailServiceProxyV1()
 		private readonly EmailServiceProxyV1Service: EmailServiceProxyV1Service,

@@ -1,4 +1,4 @@
-import { AuthModule } from "./auth/auth.module";
 import { HealthModule } from "./health/health.module";
+import { UserModule } from "./user/user.module";
 
-export const Api = [AuthModule, HealthModule];
+export const Api = [HealthModule, UserModule];

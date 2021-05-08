@@ -1,5 +1,5 @@
 import { service } from "./service";
 
-export const AuthMock = {
+export const UserMock = {
 	service: service(),
 };

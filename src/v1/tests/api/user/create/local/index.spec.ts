@@ -1,17 +1,17 @@
 import { EmailServiceProxyV1Mock } from "v1/tests/injectables/email-service-proxy/v1";
 import { UserServiceProxyV1Mock } from "v1/tests/injectables/user-service-proxy/v1";
 
-import { AuthService } from "v1/api/auth/auth.service";
+import { UserService } from "v1/api/user/user.service";
 
 import { LanguageEnum } from "core/enums/language";
 
-import { AuthMock } from "v1/tests/mocks/auth";
+import { UserMock } from "v1/tests/mocks/user";
 
-describe("AuthService > create > local", () => {
-	let service: AuthService;
+describe("UserService > create > local", () => {
+	let service: UserService;
 
 	beforeAll(async () => {
-		service = await AuthMock.service();
+		service = await UserMock.service();
 	});
 
 	it("should be defined", () => {
