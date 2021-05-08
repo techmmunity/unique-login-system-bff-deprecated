@@ -34,13 +34,13 @@ export class UserServiceProxyV1Service {
 	public regenPin({ userId }: RegenPinInput) {
 		return this.request<RegenPinOutput>({
 			url: `/user/regen-pin/${userId}`,
-			method: "PUT",
+			method: "PATCH",
 		});
 	}
 
 	public verify(body: VerifyInput) {
 		return this.request<undefined>({
-			url: "/user/verify",
+			url: "/confirmation-token/verify",
 			method: "PUT",
 			body,
 		});

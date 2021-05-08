@@ -4,6 +4,8 @@ import { validate } from "v1/api/auth/service/create/local/validate";
 
 import { InvalidParamsErrorMessage } from "v1/utils/yup";
 
+import { LanguageEnum, LanguageValues } from "core/enums/language";
+
 describe("UserService > create > local > validate", () => {
 	it("should do nothing with valid params", async () => {
 		let result;
@@ -13,6 +15,7 @@ describe("UserService > create > local > validate", () => {
 				email: "foo@bar.com",
 				username: "example",
 				password: "p7qV%Ews",
+				language: LanguageEnum.EN,
 			});
 		} catch (e) {
 			result = e;
@@ -43,6 +46,7 @@ describe("UserService > create > local > validate", () => {
 			await validate({
 				username: "example",
 				password: "p7qV%Ews",
+				language: LanguageEnum.EN,
 			} as CreateUserLocalParams);
 		} catch (e) {
 			result = e;
@@ -62,6 +66,7 @@ describe("UserService > create > local > validate", () => {
 				email: "invalid_email",
 				username: "example",
 				password: "p7qV%Ews",
+				language: LanguageEnum.EN,
 			});
 		} catch (e) {
 			result = e;
@@ -81,6 +86,7 @@ describe("UserService > create > local > validate", () => {
 				email: 123 as any,
 				username: "example",
 				password: "p7qV%Ews",
+				language: LanguageEnum.EN,
 			});
 		} catch (e) {
 			result = e;
@@ -101,6 +107,7 @@ describe("UserService > create > local > validate", () => {
 			await validate({
 				email: "foo@bar.com",
 				password: "p7qV%Ews",
+				language: LanguageEnum.EN,
 			} as CreateUserLocalParams);
 		} catch (e) {
 			result = e;
@@ -120,6 +127,7 @@ describe("UserService > create > local > validate", () => {
 				email: "foo@bar.com",
 				username: "foo@bar.com",
 				password: "p7qV%Ews",
+				language: LanguageEnum.EN,
 			});
 		} catch (e) {
 			result = e;
@@ -139,6 +147,7 @@ describe("UserService > create > local > validate", () => {
 				email: "foo@bar.com",
 				username: 123 as any,
 				password: "p7qV%Ews",
+				language: LanguageEnum.EN,
 			});
 		} catch (e) {
 			result = e;
@@ -159,6 +168,7 @@ describe("UserService > create > local > validate", () => {
 			await validate({
 				email: "foo@bar.com",
 				username: "example",
+				language: LanguageEnum.EN,
 			} as CreateUserLocalParams);
 		} catch (e) {
 			result = e;
@@ -178,6 +188,7 @@ describe("UserService > create > local > validate", () => {
 				email: "foo@bar.com",
 				username: "example",
 				password: "123",
+				language: LanguageEnum.EN,
 			});
 		} catch (e) {
 			result = e;
@@ -199,6 +210,7 @@ describe("UserService > create > local > validate", () => {
 				email: "foo@bar.com",
 				username: "example",
 				password: 123 as any,
+				language: LanguageEnum.EN,
 			});
 		} catch (e) {
 			result = e;
@@ -208,6 +220,71 @@ describe("UserService > create > local > validate", () => {
 		expect(result.response).toMatchObject({
 			errors: [
 				"password must be a `string` type, but the final value was: `123`.",
+			],
+		});
+	});
+
+	it("should throw an error without language", async () => {
+		let result;
+
+		try {
+			await validate({
+				username: "example",
+				email: "foo@bar.com",
+				password: "p7qV%Ews",
+			} as CreateUserLocalParams);
+		} catch (e) {
+			result = e;
+		}
+
+		expect(result.status).toBe(400);
+		expect(result.response).toMatchObject({
+			errors: ["language is a required field"],
+		});
+	});
+
+	it("should throw an error with invalid username", async () => {
+		let result;
+
+		try {
+			await validate({
+				username: "example",
+				email: "foo@bar.com",
+				password: "p7qV%Ews",
+				language: "123" as any,
+			});
+		} catch (e) {
+			result = e;
+		}
+
+		expect(result.status).toBe(400);
+		expect(result.response).toMatchObject({
+			errors: [
+				`language must be one of the following values: ${LanguageValues().join(
+					", ",
+				)}`,
+			],
+		});
+	});
+
+	it("should throw an error with invalid username type", async () => {
+		let result;
+
+		try {
+			await validate({
+				email: "foo@bar.com",
+				username: "example",
+				password: "p7qV%Ews",
+				language: 123 as any,
+			});
+		} catch (e) {
+			result = e;
+		}
+
+		expect(result.status).toBe(400);
+		expect(result.response).toMatchObject({
+			errors: [
+				"language must be a `string` type, but the final value was: `123`.",
 			],
 		});
 	});

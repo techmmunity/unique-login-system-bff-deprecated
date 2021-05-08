@@ -1,43 +1,33 @@
-import { Body, Controller, HttpCode, Post, Response } from "@nestjs/common";
-import { ApiBadRequestResponse, ApiNoContentResponse } from "@nestjs/swagger";
-import { Response as ExpressResponse } from "express";
+import { Body, Controller, Post } from "@nestjs/common";
+import {
+	ApiBadRequestResponse,
+	ApiNoContentResponse,
+	ApiTags,
+} from "@nestjs/swagger";
 
 import { AuthService } from "./auth.service";
 
 import { CreateUserLocalBadRequestSchema } from "./service/create/local/schemas/bad-request.schema";
 import { CreateUserLocalInputSchema } from "./service/create/local/schemas/input.schema";
+import { CreateUserLocalOutputSchema } from "./service/create/local/schemas/output.schema";
 
 import { ApiConfig } from "v1/config";
 
-const { AUTH_JWT_COOKIE_NAME, REFRESH_JWT_COOKIE_NAME } = process.env;
-
+@ApiTags(`${ApiConfig.version} - Auth`)
 @Controller(`${ApiConfig.version}/auth`)
 export class AuthController {
 	public constructor(private readonly AuthService: AuthService) {
 		//
 	}
 
-	@HttpCode(204)
 	@Post("/create/local")
 	@ApiNoContentResponse({
-		headers: {
-			"Set-Cookie": {
-				description: "Auth Token Cookie",
-				example: `${AUTH_JWT_COOKIE_NAME}=asdasdasd`,
-			},
-			"Set-Cookie ": {
-				description: "Refresh Token Cookie",
-				example: `${REFRESH_JWT_COOKIE_NAME}=asdasdasd`,
-			},
-		},
+		type: CreateUserLocalOutputSchema,
 	})
 	@ApiBadRequestResponse({
 		type: CreateUserLocalBadRequestSchema,
 	})
-	public createLocal(
-		@Response() res: ExpressResponse,
-		@Body() params: CreateUserLocalInputSchema,
-	) {
-		return this.AuthService.createLocal(res, params);
+	public createLocal(@Body() params: CreateUserLocalInputSchema) {
+		return this.AuthService.createLocal(params);
 	}
 }

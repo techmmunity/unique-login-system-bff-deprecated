@@ -1,46 +1,48 @@
-import { Response } from "express";
+import { EmailServiceProxyV1Service } from "v1/injectables/email-service-proxy/v1/email-service-proxy-v1.service";
+import { UserServiceProxyV1Service } from "v1/injectables/user-service-proxy/v1/user-service-proxy-v1.service";
 
 import { validate } from "./validate";
 
-import { UserServiceProxyV1Service } from "v1/injectables/user-service-proxy/v1/user-service-proxy-v1.service";
+import { ApplicationEnum } from "core/enums/applications";
+import { LanguageEnum } from "core/enums/language";
 
-import { CookieUtil } from "v1/utils/cookie";
-import { TokenUtil } from "v1/utils/token";
+interface Injectables {
+	EmailServiceProxyV1Service: EmailServiceProxyV1Service;
+	UserServiceProxyV1Service: UserServiceProxyV1Service;
+}
 
 export interface CreateUserLocalParams {
 	email: string;
 	username: string;
 	password: string;
-}
-
-interface Injectables {
-	res: Response;
-	UserServiceProxyV1Service: UserServiceProxyV1Service;
+	language: LanguageEnum;
 }
 
 export const createLocal = async (
-	{ UserServiceProxyV1Service, res }: Injectables,
+	{ EmailServiceProxyV1Service, UserServiceProxyV1Service }: Injectables,
 	params: CreateUserLocalParams,
 ) => {
 	await validate(params);
 
 	const result = await UserServiceProxyV1Service.createLocal(params);
 
-	const { id: userId, pin } = result.body;
+	const { userId, contactId, verificationCode } = result.body;
 
-	const tokenAuth = TokenUtil.genAuth(userId);
+	const { email, username, language } = params;
 
-	const tokenRefresh = TokenUtil.genRefresh(userId, pin);
-
-	CookieUtil.set({
-		res,
-		token: tokenAuth,
-		type: "AUTH",
+	await EmailServiceProxyV1Service.sendEmail({
+		language,
+		receiverEmail: email,
+		templateCode: "confirm.contact",
+		application: ApplicationEnum.UNIQUE_LOGIN_SYSTEM,
+		extraData: {
+			username,
+			verificationCode,
+		},
 	});
 
-	CookieUtil.set({
-		res,
-		token: tokenRefresh,
-		type: "REFRESH",
-	});
+	return {
+		userId,
+		contactId,
+	};
 };
