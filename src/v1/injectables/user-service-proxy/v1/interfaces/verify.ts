@@ -1,4 +1,4 @@
 export interface VerifyInput {
-	userId: string;
+	contactId: string;
 	verificationCode: string;
 }

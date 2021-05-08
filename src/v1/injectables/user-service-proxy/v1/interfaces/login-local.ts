@@ -4,6 +4,6 @@ export interface LoginLocalInput {
 }
 
 export interface LoginLocalOutput {
-	id: string;
+	userId: string;
 	pin: string;
 }

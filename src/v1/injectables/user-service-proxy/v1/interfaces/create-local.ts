@@ -5,6 +5,9 @@ export interface CreateLocalInput {
 }
 
 export interface CreateLocalOutput {
-	id: string;
-	pin: string;
+	userId: string;
+	contactId: string;
+	username: string;
+	email: string;
+	verificationCode: string;
 }

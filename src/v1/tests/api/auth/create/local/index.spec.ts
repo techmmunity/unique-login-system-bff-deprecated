@@ -1,6 +1,9 @@
+import { EmailServiceProxyV1Mock } from "v1/tests/injectables/email-service-proxy/v1";
 import { UserServiceProxyV1Mock } from "v1/tests/injectables/user-service-proxy/v1";
 
 import { AuthService } from "v1/api/auth/auth.service";
+
+import { LanguageEnum } from "core/enums/language";
 
 import { AuthMock } from "v1/tests/mocks/auth";
 
@@ -19,29 +22,34 @@ describe("AuthService > create > local", () => {
 		UserServiceProxyV1Mock.service.createLocal.mockResolvedValue({
 			status: 201,
 			body: {
-				id: "5fcf0ca3-f15e-4b5e-ba1c-0707d271e2b4",
-				pin: "1234",
+				userId: "37cf5f8d-9d73-4b30-b445-be28aaeb25e0",
+				contactId: "57c62e97-452e-4357-aef3-32cd169ed035",
+				verificationCode: "123456",
 			},
 		});
 
-		const res = {
-			cookie: jest.fn(),
-		};
+		EmailServiceProxyV1Mock.service.sendEmail.mockResolvedValue({
+			status: 204,
+		});
 
 		let result;
 
 		try {
-			result = await service.createLocal(res as any, {
+			result = await service.createLocal({
 				email: "foo@bar.com",
 				username: "example",
 				password: "p7qV%Ews",
+				language: LanguageEnum.EN,
 			});
 		} catch (e) {
 			result = e;
 		}
 
-		expect(res.cookie).toBeCalledTimes(2);
 		expect(UserServiceProxyV1Mock.service.createLocal).toBeCalledTimes(1);
-		expect(result).toBeUndefined();
+		expect(EmailServiceProxyV1Mock.service.sendEmail).toBeCalledTimes(1);
+		expect(result).toStrictEqual({
+			userId: "37cf5f8d-9d73-4b30-b445-be28aaeb25e0",
+			contactId: "57c62e97-452e-4357-aef3-32cd169ed035",
+		});
 	});
 });
