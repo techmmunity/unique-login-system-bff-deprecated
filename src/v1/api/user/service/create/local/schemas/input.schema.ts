@@ -17,7 +17,7 @@ export class CreateUserLocalInputSchema {
 
 	@ApiProperty({
 		description: "User strong password",
-		example: "(T6^CKCR",
+		example: "$tr0ngP@assw0rd",
 	})
 	public password: string;
 
