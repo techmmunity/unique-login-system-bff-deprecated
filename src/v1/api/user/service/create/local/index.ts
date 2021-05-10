@@ -24,7 +24,7 @@ export const createLocal = async (
 ) => {
 	await validate(params);
 
-	const result = await UserServiceProxyV1Service.createLocal(params);
+	const result = await UserServiceProxyV1Service.createUserLocal(params);
 
 	const { userId, contactId, verificationCode } = result.body;
 

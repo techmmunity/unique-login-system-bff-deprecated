@@ -3,7 +3,15 @@ import fetch, { RequestInit } from "node-fetch";
 import { URLSearchParams } from "url";
 
 import { AddContactInput, AddContactOutput } from "./interfaces/add-contact";
-import { CreateLocalInput, CreateLocalOutput } from "./interfaces/create-local";
+import {
+	CreateConfirmationTokenInput,
+	CreateConfirmationTokenOutput,
+} from "./interfaces/create-confirmation-token";
+import {
+	CreateUserLocalInput,
+	CreateUserLocalOutput,
+} from "./interfaces/create-user-local";
+import { FindUserInput, FindUserOutput } from "./interfaces/find-user";
 import { RequestParams, RequestResponse } from "./interfaces/global";
 import { LoginLocalInput, LoginLocalOutput } from "./interfaces/login-local";
 import { RegenPinInput, RegenPinOutput } from "./interfaces/regen-pin";
@@ -15,8 +23,8 @@ import { Urls } from "v1/config/urls";
 
 @Injectable()
 export class UserServiceProxyV1Service {
-	public createLocal(body: CreateLocalInput) {
-		return this.request<CreateLocalOutput>({
+	public createUserLocal(body: CreateUserLocalInput) {
+		return this.request<CreateUserLocalOutput>({
 			url: "/user/create/local",
 			method: "POST",
 			body,
@@ -49,6 +57,21 @@ export class UserServiceProxyV1Service {
 	public addContact(body: AddContactInput) {
 		return this.request<AddContactOutput>({
 			url: "/contact",
+			method: "POST",
+			body,
+		});
+	}
+
+	public findUser({ identifier }: FindUserInput) {
+		return this.request<FindUserOutput>({
+			url: `/user/${encodeURIComponent(identifier)}`,
+			method: "GET",
+		});
+	}
+
+	public createConfirmationToken(body: CreateConfirmationTokenInput) {
+		return this.request<CreateConfirmationTokenOutput>({
+			url: "/confirmation-token",
 			method: "POST",
 			body,
 		});

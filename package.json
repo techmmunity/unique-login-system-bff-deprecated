@@ -53,12 +53,6 @@
 		"tsconfig-paths": "^3.9.0",
 		"typescript": "^4.2.4"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "tsc && lint-staged",
-			"pre-push": "yarn test:cov"
-		}
-	},
 	"lint-staged": {
 		"*.{ts,tsx}": [
 			"npx prettier --write src",

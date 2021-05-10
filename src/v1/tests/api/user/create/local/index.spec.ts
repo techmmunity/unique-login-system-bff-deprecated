@@ -19,7 +19,7 @@ describe("UserService > create > local", () => {
 	});
 
 	it("should create user with valid params", async () => {
-		UserServiceProxyV1Mock.service.createLocal.mockResolvedValue({
+		UserServiceProxyV1Mock.service.createUserLocal.mockResolvedValue({
 			status: 201,
 			body: {
 				userId: "37cf5f8d-9d73-4b30-b445-be28aaeb25e0",
@@ -45,7 +45,7 @@ describe("UserService > create > local", () => {
 			result = e;
 		}
 
-		expect(UserServiceProxyV1Mock.service.createLocal).toBeCalledTimes(1);
+		expect(UserServiceProxyV1Mock.service.createUserLocal).toBeCalledTimes(1);
 		expect(EmailServiceProxyV1Mock.service.sendEmail).toBeCalledTimes(1);
 		expect(result).toStrictEqual({
 			userId: "37cf5f8d-9d73-4b30-b445-be28aaeb25e0",

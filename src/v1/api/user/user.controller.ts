@@ -1,12 +1,16 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, HttpCode, Post } from "@nestjs/common";
 import {
 	ApiBadRequestResponse,
+	ApiCreatedResponse,
 	ApiNoContentResponse,
+	ApiResponse,
 	ApiTags,
 } from "@nestjs/swagger";
 
 import { UserService } from "./user.service";
 
+import { ChangePasswordFirstPartInputSchema } from "./service/change-password/first-part/schemas/input.schema";
+import { ChangePasswordFirstPartTeapotSchema } from "./service/change-password/first-part/schemas/teapot.schema";
 import { CreateUserLocalBadRequestSchema } from "./service/create/local/schemas/bad-request.schema";
 import { CreateUserLocalInputSchema } from "./service/create/local/schemas/input.schema";
 import { CreateUserLocalOutputSchema } from "./service/create/local/schemas/output.schema";
@@ -21,7 +25,7 @@ export class UserController {
 	}
 
 	@Post("/create/local")
-	@ApiNoContentResponse({
+	@ApiCreatedResponse({
 		type: CreateUserLocalOutputSchema,
 	})
 	@ApiBadRequestResponse({
@@ -29,5 +33,18 @@ export class UserController {
 	})
 	public createLocal(@Body() params: CreateUserLocalInputSchema) {
 		return this.UserService.createLocal(params);
+	}
+
+	@Post("/change-password/first-part")
+	@HttpCode(204)
+	@ApiNoContentResponse()
+	@ApiResponse({
+		status: 418,
+		type: ChangePasswordFirstPartTeapotSchema,
+	})
+	public changePasswordPartOne(
+		@Body() params: ChangePasswordFirstPartInputSchema,
+	) {
+		return this.UserService.changePasswordFirstPart(params);
 	}
 }
