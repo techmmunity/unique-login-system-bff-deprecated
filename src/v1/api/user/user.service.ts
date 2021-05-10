@@ -5,6 +5,10 @@ import { UserServiceProxyV1 } from "v1/injectables/user-service-proxy/v1/user-se
 import { EmailServiceProxyV1Service } from "v1/injectables/email-service-proxy/v1/email-service-proxy-v1.service";
 import { UserServiceProxyV1Service } from "v1/injectables/user-service-proxy/v1/user-service-proxy-v1.service";
 
+import {
+	changePasswordFirstPart,
+	ChangePasswordFirstPartParams,
+} from "./service/change-password/first-part";
 import { createLocal, CreateUserLocalParams } from "./service/create/local";
 
 @Injectable()
@@ -20,6 +24,16 @@ export class UserService {
 
 	public createLocal(params: CreateUserLocalParams) {
 		return createLocal(
+			{
+				EmailServiceProxyV1Service: this.EmailServiceProxyV1Service,
+				UserServiceProxyV1Service: this.UserServiceProxyV1Service,
+			},
+			params,
+		);
+	}
+
+	public changePasswordFirstPart(params: ChangePasswordFirstPartParams) {
+		return changePasswordFirstPart(
 			{
 				EmailServiceProxyV1Service: this.EmailServiceProxyV1Service,
 				UserServiceProxyV1Service: this.UserServiceProxyV1Service,

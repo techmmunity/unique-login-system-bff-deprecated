@@ -1,10 +1,10 @@
-export interface CreateLocalInput {
+export interface CreateUserLocalInput {
 	email: string;
 	username: string;
 	password: string;
 }
 
-export interface CreateLocalOutput {
+export interface CreateUserLocalOutput {
 	userId: string;
 	contactId: string;
 	username: string;
