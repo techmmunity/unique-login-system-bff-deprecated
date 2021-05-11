@@ -6,4 +6,5 @@ export interface UserServiceProxyV1MockType {
 	verify: jest.Mock<any, any>;
 	findUser: jest.Mock<any, any>;
 	createConfirmationToken: jest.Mock<any, any>;
+	changePassword: jest.Mock<any, any>;
 }

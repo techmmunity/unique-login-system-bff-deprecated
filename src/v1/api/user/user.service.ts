@@ -9,6 +9,10 @@ import {
 	changePasswordFirstPart,
 	ChangePasswordFirstPartParams,
 } from "./service/change-password/first-part";
+import {
+	changePasswordLastPart,
+	ChangePasswordLastPartParams,
+} from "./service/change-password/last-part";
 import { createLocal, CreateUserLocalParams } from "./service/create/local";
 
 @Injectable()
@@ -34,6 +38,16 @@ export class UserService {
 
 	public changePasswordFirstPart(params: ChangePasswordFirstPartParams) {
 		return changePasswordFirstPart(
+			{
+				EmailServiceProxyV1Service: this.EmailServiceProxyV1Service,
+				UserServiceProxyV1Service: this.UserServiceProxyV1Service,
+			},
+			params,
+		);
+	}
+
+	public changePasswordLastPart(params: ChangePasswordLastPartParams) {
+		return changePasswordLastPart(
 			{
 				EmailServiceProxyV1Service: this.EmailServiceProxyV1Service,
 				UserServiceProxyV1Service: this.UserServiceProxyV1Service,

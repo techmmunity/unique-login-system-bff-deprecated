@@ -4,6 +4,10 @@ import { URLSearchParams } from "url";
 
 import { AddContactInput, AddContactOutput } from "./interfaces/add-contact";
 import {
+	ChangePasswordInput,
+	ChangePasswordOutput,
+} from "./interfaces/change-password";
+import {
 	CreateConfirmationTokenInput,
 	CreateConfirmationTokenOutput,
 } from "./interfaces/create-confirmation-token";
@@ -72,6 +76,14 @@ export class UserServiceProxyV1Service {
 	public createConfirmationToken(body: CreateConfirmationTokenInput) {
 		return this.request<CreateConfirmationTokenOutput>({
 			url: "/confirmation-token",
+			method: "POST",
+			body,
+		});
+	}
+
+	public changePassword(body: ChangePasswordInput) {
+		return this.request<ChangePasswordOutput>({
+			url: "/user/change-password",
 			method: "POST",
 			body,
 		});

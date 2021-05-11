@@ -11,6 +11,8 @@ import { UserService } from "./user.service";
 
 import { ChangePasswordFirstPartInputSchema } from "./service/change-password/first-part/schemas/input.schema";
 import { ChangePasswordFirstPartTeapotSchema } from "./service/change-password/first-part/schemas/teapot.schema";
+import { ChangePasswordLastPartBadRequestSchema } from "./service/change-password/last-part/schemas/bad-request.schema";
+import { ChangePasswordLastPartInputSchema } from "./service/change-password/last-part/schemas/input.schema";
 import { CreateUserLocalBadRequestSchema } from "./service/create/local/schemas/bad-request.schema";
 import { CreateUserLocalInputSchema } from "./service/create/local/schemas/input.schema";
 import { CreateUserLocalOutputSchema } from "./service/create/local/schemas/output.schema";
@@ -42,9 +44,21 @@ export class UserController {
 		status: 418,
 		type: ChangePasswordFirstPartTeapotSchema,
 	})
-	public changePasswordPartOne(
+	public changePasswordFirstPart(
 		@Body() params: ChangePasswordFirstPartInputSchema,
 	) {
 		return this.UserService.changePasswordFirstPart(params);
+	}
+
+	@Post("/change-password/last-part")
+	@HttpCode(204)
+	@ApiNoContentResponse()
+	@ApiBadRequestResponse({
+		type: ChangePasswordLastPartBadRequestSchema,
+	})
+	public changePasswordLastPart(
+		@Body() params: ChangePasswordLastPartInputSchema,
+	) {
+		return this.UserService.changePasswordLastPart(params);
 	}
 }
