@@ -8,4 +8,5 @@ export const service = (): UserServiceProxyV1MockType => ({
 	verify: jest.fn(),
 	findUser: jest.fn(),
 	createConfirmationToken: jest.fn(),
+	changePassword: jest.fn(),
 });
