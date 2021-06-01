@@ -5,9 +5,6 @@
 	// Disable Tab To Space Conversion
 	"editor.insertSpaces": false,
 
-	// Make Prettier The Default Code Formatter
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-
 	// Config Default End Of Line Formatting
 	"files.eol": "\n",
 
@@ -26,10 +23,13 @@
 
 	// Make VSCode understand this files as files of this languages
 	"files.associations": {
-		".env.hmg": "env",
-		".env.docker": "env",
-		".env.test": "env"
-	},
+    ".prettierignore": "ignore",
+    ".lintstagedrc": "json",
+    ".env.*": "env"
+  },
+  "material-icon-theme.languages.associations": {
+    "env": "tune"
+  },
 
 	// ================ Languages General Config ====================
 
@@ -37,19 +37,9 @@
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"typescript.tsserver.log": "verbose",
 	"typescript.suggest.autoImports": true,
-	"[typescript]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
-	},
 	// JavaScript
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"javascript.suggest.autoImports": true,
-	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	// JSON
-	"[json]": {
-		"editor.defaultFormatter": "vscode.json-language-features"
-	},
 
 	// =========== Plugins & Extensions General Config ===============
 
