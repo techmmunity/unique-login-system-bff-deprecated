@@ -4,7 +4,7 @@
 	"description": "",
 	"author": "Techmmunity",
 	"private": false,
-	"license": "UNLICENSED",
+	"license": "Apache-2.0",
 	"dependencies": {
 		"@nestjs/common": "^7.6.15",
 		"@nestjs/core": "^7.6.15",
