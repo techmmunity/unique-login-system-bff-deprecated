@@ -102,7 +102,7 @@ describe("UserService > changePassword > lastPart > validate", () => {
 		expect(result.status).toBe(400);
 		expect(result.response).toMatchObject({
 			errors: [
-				`confirmationTokenId must be at least ${Limits.user.identifier.min} characters`,
+				`confirmationTokenId must be at least ${Limits.user.confirmationTokenId.length} characters`,
 			],
 		});
 	});
@@ -126,7 +126,7 @@ describe("UserService > changePassword > lastPart > validate", () => {
 		expect(result.status).toBe(400);
 		expect(result.response).toMatchObject({
 			errors: [
-				`confirmationTokenId must be at most ${Limits.user.identifier.min} characters`,
+				`confirmationTokenId must be at most ${Limits.user.confirmationTokenId.length} characters`,
 			],
 		});
 	});
