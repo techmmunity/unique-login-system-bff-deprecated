@@ -1,5 +1,4 @@
 import { CreateUserLocalParams } from ".";
-import { email, username } from "../fields-validation";
 
 import { ErrorUtil } from "v1/utils/error";
 import { yup } from "v1/utils/yup";

@@ -5,6 +5,7 @@ import { validate } from "v1/api/user/service/change-password/last-part/validate
 import { InvalidParamsErrorMessage } from "v1/utils/yup";
 
 import { LanguageEnum, LanguageValues } from "core/enums/language";
+
 import { Limits } from "v1/config/limits";
 
 describe("UserService > changePassword > lastPart > validate", () => {

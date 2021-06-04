@@ -18,8 +18,8 @@ const schema = yup.object().shape({
 		.string()
 		.required()
 		.strict()
-		.min(Limits.user.newPassword.min)
-		.max(Limits.user.newPassword.max),
+		.min(Limits.user.password.min)
+		.max(Limits.user.password.max),
 	language: yup.string().required().strict().oneOf(LanguageValues()),
 });
 

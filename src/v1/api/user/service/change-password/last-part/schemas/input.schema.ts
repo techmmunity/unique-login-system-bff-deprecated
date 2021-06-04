@@ -16,8 +16,8 @@ export class ChangePasswordLastPartInputSchema {
 	@ApiProperty({
 		description: "User new password",
 		example: "$tr0ngP@assw0rd",
-		minLength: Limits.user.newPassword.min,
-		maxLength: Limits.user.newPassword.max,
+		minLength: Limits.user.password.min,
+		maxLength: Limits.user.password.max,
 	})
 	public newPassword: string;
 
