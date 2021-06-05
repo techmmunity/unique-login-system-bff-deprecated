@@ -186,7 +186,7 @@ describe("UserService > changePassword > lastPart > validate", () => {
 		expect(result.status).toBe(400);
 		expect(result.response).toMatchObject({
 			errors: [
-				`identifier must be at least ${Limits.user.password.min} characters`,
+				`newPassword must be at least ${Limits.user.password.min} characters`,
 			],
 		});
 	});
@@ -207,7 +207,7 @@ describe("UserService > changePassword > lastPart > validate", () => {
 		expect(result.status).toBe(400);
 		expect(result.response).toMatchObject({
 			errors: [
-				`identifier must be at most ${Limits.user.password.max} characters`,
+				`newPassword must be at most ${Limits.user.password.max} characters`,
 			],
 		});
 	});

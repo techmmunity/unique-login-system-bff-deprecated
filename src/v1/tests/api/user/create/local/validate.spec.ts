@@ -283,7 +283,7 @@ describe("UserService > create > local > validate", () => {
 		expect(result.status).toBe(400);
 		expect(result.response).toMatchObject({
 			errors: [
-				"password must have at least 1 special character, 1 lower case character, 1 upper case character, 1 number and a lenght between 6 and 24 characters",
+				"password must have at least 1 special character, 1 lower case character, 1 upper case character, 1 number and a length between 6 and 24 characters",
 			],
 		});
 	});
@@ -328,6 +328,7 @@ describe("UserService > create > local > validate", () => {
 		expect(result.response).toMatchObject({
 			errors: [
 				`password must be at least ${Limits.user.password.min} characters`,
+				"password must have at least 1 special character, 1 lower case character, 1 upper case character, 1 number and a length between 6 and 24 characters",
 			],
 		});
 	});
@@ -350,6 +351,7 @@ describe("UserService > create > local > validate", () => {
 		expect(result.response).toMatchObject({
 			errors: [
 				`password must be at most ${Limits.user.password.max} characters`,
+				"password must have at least 1 special character, 1 lower case character, 1 upper case character, 1 number and a length between 6 and 24 characters",
 			],
 		});
 	});
