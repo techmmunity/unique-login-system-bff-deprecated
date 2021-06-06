@@ -73,7 +73,7 @@ describe("UserService > create > local > validate", () => {
 		} catch (e) {
 			result = e;
 		}
-
+		console.log(result);
 		expect(result.status).toBe(400);
 		expect(result.response).toMatchObject({
 			errors: ["email must be a valid email"],
@@ -328,7 +328,6 @@ describe("UserService > create > local > validate", () => {
 		expect(result.response).toMatchObject({
 			errors: [
 				`password must be at least ${Limits.user.password.min} characters`,
-				"password must have at least 1 special character, 1 lower case character, 1 upper case character, 1 number and a length between 6 and 24 characters",
 			],
 		});
 	});
@@ -351,7 +350,6 @@ describe("UserService > create > local > validate", () => {
 		expect(result.response).toMatchObject({
 			errors: [
 				`password must be at most ${Limits.user.password.max} characters`,
-				"password must have at least 1 special character, 1 lower case character, 1 upper case character, 1 number and a length between 6 and 24 characters",
 			],
 		});
 	});
@@ -375,7 +373,7 @@ describe("UserService > create > local > validate", () => {
 		});
 	});
 
-	it("should throw an error with invalid username", async () => {
+	it("should throw an error with invalid language", async () => {
 		let result;
 
 		try {
@@ -399,7 +397,7 @@ describe("UserService > create > local > validate", () => {
 		});
 	});
 
-	it("should throw an error with invalid username type", async () => {
+	it("should throw an error with invalid language type", async () => {
 		let result;
 
 		try {

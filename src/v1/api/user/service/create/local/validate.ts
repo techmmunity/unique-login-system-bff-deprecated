@@ -13,20 +13,22 @@ const schema = yup.object().shape({
 		.required()
 		.strict()
 		.min(Limits.user.email.min)
-		.max(Limits.user.email.max),
+		.max(Limits.user.email.max)
+		.email(),
 	username: yup
 		.string()
 		.required()
 		.strict()
 		.min(Limits.user.username.min)
-		.max(Limits.user.username.max),
+		.max(Limits.user.username.max)
+		.username(),
 	password: yup
 		.string()
 		.required()
 		.strict()
-		.password()
 		.min(Limits.user.password.min)
-		.max(Limits.user.password.max),
+		.max(Limits.user.password.max)
+		.password(),
 	language: yup.string().required().strict().oneOf(LanguageValues()),
 });
 
