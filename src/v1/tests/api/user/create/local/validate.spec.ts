@@ -73,7 +73,7 @@ describe("UserService > create > local > validate", () => {
 		} catch (e) {
 			result = e;
 		}
-		console.log(result);
+
 		expect(result.status).toBe(400);
 		expect(result.response).toMatchObject({
 			errors: ["email must be a valid email"],
