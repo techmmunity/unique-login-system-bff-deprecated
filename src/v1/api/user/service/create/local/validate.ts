@@ -1,4 +1,5 @@
 import { CreateUserLocalParams } from ".";
+import { email, username } from "../fields-validation";
 
 import { ErrorUtil } from "v1/utils/error";
 import { yup } from "v1/utils/yup";
@@ -8,20 +9,8 @@ import { LanguageValues } from "core/enums/language";
 import { Limits } from "v1/config/limits";
 
 const schema = yup.object().shape({
-	email: yup
-		.string()
-		.required()
-		.strict()
-		.min(Limits.user.email.min)
-		.max(Limits.user.email.max)
-		.email(),
-	username: yup
-		.string()
-		.required()
-		.strict()
-		.min(Limits.user.username.min)
-		.max(Limits.user.username.max)
-		.username(),
+	email,
+	username,
 	password: yup
 		.string()
 		.required()
