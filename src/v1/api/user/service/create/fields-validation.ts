@@ -2,9 +2,23 @@ import { yup } from "v1/utils/yup";
 
 import { HeadlineValues } from "core/enums/headline";
 
-export const email = yup.string().required().strict().email();
+import { Limits } from "v1/config/limits";
 
-export const username = yup.string().required().strict().username();
+export const email = yup
+	.string()
+	.required()
+	.strict()
+	.min(Limits.user.email.min)
+	.max(Limits.user.email.max)
+	.email();
+
+export const username = yup
+	.string()
+	.required()
+	.strict()
+	.min(Limits.user.username.min)
+	.max(Limits.user.username.max)
+	.username();
 
 export const birthday = yup.date().required().strict().max(new Date());
 
